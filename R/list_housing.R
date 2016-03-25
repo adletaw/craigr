@@ -14,7 +14,7 @@
 #'
 #' @export
 
-list_housing <- function(location = "Seattle", area = "seattle", base_url = NULL,
+list_housing <- function(location = "Seattle", area = "all", base_url = NULL,
                          query = NULL, bedrooms = NULL, bathrooms = NULL,
                          min_price = NULL, max_price = NULL,
                          min_sqft = NULL, max_sqft = NULL,
