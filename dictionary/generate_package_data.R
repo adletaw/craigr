@@ -3,4 +3,4 @@
 craigs_places <- read.csv("dictionary/places.csv", stringsAsFactors = FALSE)
 
 ## Write to system data
-save(craigs_places, file = "R/sysdata.rda")
+devtools::use_data(craigs_places, internal = TRUE, overwrite = TRUE)
