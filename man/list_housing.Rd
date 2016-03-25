@@ -10,19 +10,40 @@ list_housing(location = "Seattle", area = "all", base_url = NULL,
   posted_today = FALSE, pets_cat = FALSE, pets_dog = FALSE)
 }
 \arguments{
-\item{city}{Character string containing the city you want to look in. Default
+\item{location}{Character vector containing the region to look in. Default
 is "Seattle".}
 
-\item{key}{Optional character string containing a search term to filter
-results.}
+\item{area}{Character vector containing the specific area to look in. Default
+is "all".}
 
-\item{price_min}{Optional numeric containing minimum price.}
+\item{base_url}{Optional character vector containing the craigslist base url.
+This overwrites the \code{location} and \code{area} parameters if supplied.}
 
-\item{price_max}{Optional numeric containing maximum price.}
+\item{bedrooms}{Optional character vector specifying the desired number of
+bedrooms.}
 
-\item{sqft_min}{Optional numeric containing minimum square footage.}
+\item{bathrooms}{Optional character vector specifying the desired number of
+bathrooms.}
 
-\item{sqft_max}{Optional numeric containing maximum square footage.}
+\item{min_price}{Optional numeric containing minimum price.}
+
+\item{max_price}{Optional numeric containing maximum price.}
+
+\item{min_sqft}{Optional numeric containing minimum square footage.}
+
+\item{max_sqft}{Optional numeric containing maximum square footage.}
+
+\item{has_pic}{Logical specifying whether listing must contain a photo.
+Default is \code{FALSE}.}
+
+\item{posted_today}{Logical specifying whether listing must have been posted
+today. Default is \code{FALSE}.}
+
+\item{pets_cat}{Logical specifying whether apartment must allow cats. Default
+is \code{FALSE}.}
+
+\item{pets_dog}{Logical specifying whether apartment must allow dogs. Default
+is \code{FALSE}.}
 }
 \description{
 Get a list of housing available on craiglist using your own

@@ -3,17 +3,31 @@
 #' @description Get a list of housing available on craiglist using your own
 #' specifications
 #'
-#' @param city Character string containing the city you want to look in. Default
+#' @param location Character vector containing the region to look in. Default
 #' is "Seattle".
-#' @param key Optional character string containing a search term to filter
-#' results.
-#' @param price_min Optional numeric containing minimum price.
-#' @param price_max Optional numeric containing maximum price.
-#' @param sqft_min Optional numeric containing minimum square footage.
-#' @param sqft_max Optional numeric containing maximum square footage.
+#' @param area Character vector containing the specific area to look in. Default
+#' is "all".
+#' @param base_url Optional character vector containing the craigslist base url.
+#' This overwrites the \code{location} and \code{area} parameters if supplied.
+#' @param bedrooms Optional character vector specifying the desired number of
+#' bedrooms.
+#' @param bathrooms Optional character vector specifying the desired number of
+#' bathrooms.
+#' @param min_price Optional numeric containing minimum price.
+#' @param max_price Optional numeric containing maximum price.
+#' @param min_sqft Optional numeric containing minimum square footage.
+#' @param max_sqft Optional numeric containing maximum square footage.
+#' @param has_pic Logical specifying whether listing must contain a photo.
+#' Default is \code{FALSE}.
+#' @param posted_today Logical specifying whether listing must have been posted
+#' today. Default is \code{FALSE}.
+#' @param pets_cat Logical specifying whether apartment must allow cats. Default
+#' is \code{FALSE}.
+#' @param pets_dog Logical specifying whether apartment must allow dogs. Default
+#' is \code{FALSE}.
 #'
 #' @export
-
+#'
 list_housing <- function(location = "Seattle", area = "all", base_url = NULL,
                          query = NULL, bedrooms = NULL, bathrooms = NULL,
                          min_price = NULL, max_price = NULL,
@@ -21,9 +35,6 @@ list_housing <- function(location = "Seattle", area = "all", base_url = NULL,
                          has_pic = FALSE, posted_today = FALSE,
                          pets_cat = FALSE, pets_dog = FALSE)
 {
-  ## Load in the dictionary of craigslist locations
-  # load("R/sysdata.rda")
-
   ## Generate the base url based on specified location and area
   ## If "base_url" is specified, this section will be skipped
   if(missing("base_url"))
