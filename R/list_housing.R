@@ -51,12 +51,25 @@ list_housing <- function(location = "seattle", area = "all", base_url = NULL,
     area <- "all"
   }
   # Check remaining parameter classes
-  check_class(bedrooms,     "numeric")
-  check_class(bathrooms,    "numeric")
-  check_class(min_price,    "numeric")
-  check_class(max_price,    "numeric")
-  check_class(min_sqft,     "numeric")
-  check_class(max_sqft,     "numeric")
+  if(!missing(bedrooms)){
+    check_class(bedrooms, "numeric")
+  }
+  if(!missing(bathrooms)){
+    check_class(bathrooms, "numeric")
+  }
+  if(!missing(min_price)){
+    check_class(min_price, "numeric")
+  }
+  if(!missing(max_price)){
+    check_class(max_price, "numeric")
+  }
+  if(!missing(min_sqft)){
+    check_class(min_sqft, "numeric")
+  }
+  if(!missing(max_sqft)){
+    check_class(max_sqft, "numeric")
+  }
+
   check_class(has_pic,      "logical")
   check_class(posted_today, "logical")
   check_class(pets_cat,     "logical")
