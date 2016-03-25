@@ -22,6 +22,11 @@ get_query <- function(query, type = "apa")
   ## Select out the apartment ads
   raw_ads <- html_nodes(raw_query, "span.txt")
 
+  titles <- c()
+  prices <- c()
+  dates  <- c()
+  urls   <- c()
+
   ## Loop through to make sure no data is missing
   for(i in 1:length(raw_ads)){
     ## Post title
@@ -30,11 +35,17 @@ get_query <- function(query, type = "apa")
       html_text()
 
     ## Post price
-    price <- raw_ads[i] %>%
+    price <- try({raw_ads[i] %>%
       html_node("span.price") %>%
       html_text() %>%
-      string::str_extract("[0-9]+") %>%
+      stringr::str_extract("[0-9]+") %>%
       as.numeric()
+    }, silent = TRUE)
+
+    # If there was an error, set price to NA
+    if(class(price)=="try-error"){
+      price <- NA
+    }
 
     ## Post date
     date <- raw_ads[i] %>%
@@ -45,13 +56,19 @@ get_query <- function(query, type = "apa")
     url <- raw_ads[i] %>%
       html_node("a") %>%
       html_attr("href")
+
+    ## Populate data vectors
+    titles <- c(titles, title)
+    prices <- c(prices, price)
+    dates  <- c(dates,  date)
+    url    <- c(urls,   url)
   }
 
   ## Bind the data
-  clean_data <- data.frame(Title = titles_clean,
-                           Price = prices_clean,
-                           Date  = dates_clean,
-                           URL   = urls_clean)
+  clean_data <- data.frame(Title = titles,
+                           Price = prices,
+                           Date  = dates,
+                           URL   = urls)
 
   return(clean_data)
 }
