@@ -12,7 +12,13 @@
 get_num_results <- function(query)
 {
   require(rvest)
+  require(magrittr)
 
   ## The raw query
   raw_query <- read_html(query)
+
+  tot_results <- html_node(raw_query, "span.totalcount") %>%
+    html_text()
+
+  return(tot_results)
 }
