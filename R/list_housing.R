@@ -79,5 +79,8 @@ list_housing <- function(location = "Seattle", area = "seattle", base_url = NULL
     query_url <- base_url
   }
 
-  return(scrapeR::scrape(query_url))
+  ## Scrape and clean the results of the query
+  query_results <- get_query(query_url)
+
+  return(query_results)
 }
