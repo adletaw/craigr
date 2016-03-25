@@ -14,7 +14,92 @@
 #'
 #' @export
 
-list_housing <- function(city = "Seattle", key = NA, price_min = NA,
-                         price_max = NA, sqft_min = NA, sqft_max = NA){
+list_housing <- function(location = "Seattle", area = "seattle", base_url = NULL,
+                         query = NULL, bedrooms = NULL, bathrooms = NULL,
+                         min_price = NULL, max_price = NULL,
+                         min_sqft = NULL, max_sqft = NULL,
+                         has_pic = FALSE, posted_today = FALSE,
+                         pets_cat = FALSE, pets_dog = FALSE)
+{
+  ## Load in the dictionary of craigslist locations
+  load("data/craigs_places.rda")
 
+  ## Generate the base url based on specified location and area
+  ## If "base_url" is specified, this section will be skipped
+  if(missing("base_url"))
+  {
+    base_url <- get_base_url(location, area)
+  }
+
+  ## Generate the query based on supplied parameters
+  # Vector to whold query components
+  queries <- c("?")
+
+  # Generate queries
+  if(!(missing(query))){
+    queries <- c(queries, paste0("query=", query))
+  }
+  if(!(missing(bedrooms))){
+    queries <- c(queries, paste0("bedrooms=", bedrooms))
+  }
+  if(!(missing(bathrooms))){
+    queries <- c(queries, paste0("bathrooms=", bathrooms))
+  }
+  if(!(missing(min_price))){
+    queries <- c(queries, paste0("min_price=", min_price))
+  }
+  if(!(missing(max_price))){
+    queries <- c(queries, paste0("max_price=", max_price))
+  }
+  if(!(missing(min_sqft))){
+    queries <- c(queries, paste0("minSqft=", min_sqft))
+  }
+  if(!(missing(max_sqft))){
+    queries <- c(queries, paste0("maxSqft=", max_sqft))
+  }
+  if(has_pic){
+    queries <- c(queries, "hasPic=1")
+  }
+  if(posted_today){
+    queries <- c(queries, "postedToday=1")
+  }
+  if(pets_cat){
+    queries <- c(queries, "pets_cat=1")
+  }
+  if(pets_dog){
+    queries <- c(queries, "pets_dog=1")
+  }
+
+  # Add queries to url
+  if(length(queries) > 1){
+    query_url <- paste0(base_url,
+                        queries[1],
+                        paste(queries[2:length(queries)], sep = "&"))
+    return(query_url)
+  } else{
+    return(base_url)
+  }
+
+  #return(scrapeR::scrape(url))
+}
+
+get_base_url <- function(location, area, type = "apa")
+{
+  ## Find the line containing the specified location and area
+  line_num <- which(craigs_places$location == location &
+                    craigs_places$area     == area)
+
+  ## Find the URL prefix associated with the location
+  prefix <- craigs_places$prefix[line_num]
+
+  ## Generate the base url
+  if(area == "all"){
+    return(paste0("https://", prefix, ".craigslist.org/search/", type))
+  } else {
+    ## Get the suffix
+    suffix <- craigs_places$suffix[line_num]
+
+    return(paste0("https://", prefix, ".craigslist.org/search/", suffix, "/",
+                  type))
+  }
 }
