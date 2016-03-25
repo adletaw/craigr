@@ -14,6 +14,7 @@
 get_query <- function(query, type = "apa")
 {
   require(rvest)
+  require(magrittr)
 
   ## The raw query
   raw_query <- read_html(query)
@@ -27,7 +28,10 @@ get_query <- function(query, type = "apa")
 
   ## Get the prices
   prices_raw   <- html_nodes(raw_ads, "span.price")
-  prices_clean <- html_text(prices_raw)
+  prices_clean <- prices_raw %>%
+    html_text() %>%
+    stringr::str_extract("[0-9]+") %>%
+    as.numeric()
 
   ## Get the post date
   dates_raw   <- html_nodes(raw_ads, "time")
