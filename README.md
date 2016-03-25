@@ -6,3 +6,7 @@
 
 This package is under active develpment.  Currently, you can download housing
 data for Seattle or Houston only.
+
+## Usage
+
+`list_housing(bedrooms = 2, bathrooms = 1)`
