@@ -22,7 +22,7 @@ get_num_results <- function(query)
     html_nodes("span.totalcount") %>%
     extract(1) %>%
     html_text() %>%
-    as.numeric
+    as.numeric()
 
   return(tot_results)
 }
