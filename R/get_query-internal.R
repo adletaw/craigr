@@ -61,7 +61,7 @@ get_query <- function(query, type = "apa")
     titles <- c(titles, title)
     prices <- c(prices, price)
     dates  <- c(dates,  date)
-    url    <- c(urls,   url)
+    urls   <- c(urls,   url)
   }
 
   ## Bind the data
