@@ -80,9 +80,13 @@ list_housing <- function(location = "Seattle", area = "all", base_url = NULL,
   }
 
   ## Scrape and clean the results of the query
-  ## Go through each page of craigslist using a loop
-  ## There are 100 results per page, 2500 total, which is 25 pages
-  for(i in 0:2)
+
+  # How many results are available?
+  tot_results <- get_num_results(query_url)
+  num_pages   <- trunc(tot_results/100) - 1
+
+  # Go through each page of craigslist using a loop
+  for(i in 0:num_pages)
   {
     if(i == 0){
       ## Nothing is appended to the URL for the first page
