@@ -3,7 +3,9 @@ Type: Package
 Title: Scrape Data From Craigslist
 Version: 0.1.0
 Authors@R: person("Alathea", "Letaw", email = "alathea@zoology.ubc.ca", role = c("aut", "cre"))
-Description: More about what it does (maybe more than one line)
+Description: This package allows you to query craigslist using the same search
+parameters provided on their website.  Results are cleaned up and returned in a
+data frame allowing easy analysis.
 License: MIT + file LICENSE
 LazyData: TRUE
 Requires: scrapeR, R (>=3.2.4)
