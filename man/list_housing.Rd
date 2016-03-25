@@ -4,7 +4,7 @@
 \alias{list_housing}
 \title{List housing}
 \usage{
-list_housing(location = "Seattle", area = "all", base_url = NULL,
+list_housing(location = "seattle", area = "all", base_url = NULL,
   query = NULL, bedrooms = NULL, bathrooms = NULL, min_price = NULL,
   max_price = NULL, min_sqft = NULL, max_sqft = NULL, has_pic = FALSE,
   posted_today = FALSE, pets_cat = FALSE, pets_dog = FALSE)
