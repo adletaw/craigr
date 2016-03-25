@@ -22,7 +22,7 @@ list_housing <- function(location = "Seattle", area = "seattle", base_url = NULL
                          pets_cat = FALSE, pets_dog = FALSE)
 {
   ## Load in the dictionary of craigslist locations
-  load("data/craigs_places.rda")
+  # load("R/sysdata.rda")
 
   ## Generate the base url based on specified location and area
   ## If "base_url" is specified, this section will be skipped
@@ -81,25 +81,4 @@ list_housing <- function(location = "Seattle", area = "seattle", base_url = NULL
   }
 
   #return(scrapeR::scrape(url))
-}
-
-get_base_url <- function(location, area, type = "apa")
-{
-  ## Find the line containing the specified location and area
-  line_num <- which(craigs_places$location == location &
-                    craigs_places$area     == area)
-
-  ## Find the URL prefix associated with the location
-  prefix <- craigs_places$prefix[line_num]
-
-  ## Generate the base url
-  if(area == "all"){
-    return(paste0("https://", prefix, ".craigslist.org/search/", type))
-  } else {
-    ## Get the suffix
-    suffix <- craigs_places$suffix[line_num]
-
-    return(paste0("https://", prefix, ".craigslist.org/search/", suffix, "/",
-                  type))
-  }
 }
