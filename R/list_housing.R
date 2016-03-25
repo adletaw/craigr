@@ -28,13 +28,24 @@
 #'
 #' @export
 #'
-list_housing <- function(location = "Seattle", area = "all", base_url = NULL,
+list_housing <- function(location = "seattle", area = "all", base_url = NULL,
                          query = NULL, bedrooms = NULL, bathrooms = NULL,
                          min_price = NULL, max_price = NULL,
                          min_sqft = NULL, max_sqft = NULL,
                          has_pic = FALSE, posted_today = FALSE,
                          pets_cat = FALSE, pets_dog = FALSE)
 {
+  ## Input checks
+  # Valid location?
+  if(!(location %in% craigs_places$location)){
+    stop("Sorry, I don't understand that location.")
+  }
+  # Valid location + area?
+  if(!any(craigs_places$location == location & craigs_places$area == area)){
+    warning("That area is invalid.  Defaulting to 'all'.")
+    area <- "all"
+  }
+
   ## Generate the base url based on specified location and area
   ## If "base_url" is specified, this section will be skipped
   if(missing("base_url"))
