@@ -80,7 +80,29 @@ list_housing <- function(location = "Seattle", area = "all", base_url = NULL,
   }
 
   ## Scrape and clean the results of the query
-  query_results <- get_query(query_url)
+  ## Go through each page of craigslist using a loop
+  ## There are 100 results per page, 2500 total, which is 25 pages
+  for(i in 0:24)
+  {
+    if(i == 0){
+      ## Nothing is appended to the URL for the first page
+      all_results <- get_query(query_url)
+    } else {
+      ## Add page number
+      if(length(queries) > 1){
+        ## If the query was not empty, add a new filter using "&"
+        query_page <- paste0(query_url, "&s=", i*100)
+      } else {
+        ## If the query was empty, add a new filter using "?"
+        query_page <- paste0(query_url, "?s=", i*100)
+      }
 
-  return(query_results)
+      query_results <- get_query(query_page)
+    }
+
+    ## Bind the results from each page
+    all_results <- rbind(all_results, query_results)
+  }
+
+  return(all_results)
 }
