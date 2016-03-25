@@ -13,7 +13,10 @@
 #'
 get_query <- function(query, type = "apa")
 {
-  raw_query <- scrapeR::scrape(query, parse = TRUE)
+  require(rvest)
+  ## The raw query
+  raw_query <- read_html(query)
 
+  ## Remove everything before the first house listing
   return(raw_query)
 }
