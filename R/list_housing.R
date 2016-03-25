@@ -74,7 +74,7 @@ list_housing <- function(location = "Seattle", area = "seattle", base_url = NULL
   if(length(queries) > 1){
     query_url <- paste0(base_url,
                         queries[1],
-                        paste(queries[2:length(queries)], sep = "&"))
+                        paste(queries[2:length(queries)], collapse = "&"))
     return(query_url)
   } else{
     return(base_url)
