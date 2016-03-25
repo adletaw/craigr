@@ -13,7 +13,7 @@
 #'
 get_query <- function(query, type = "apa")
 {
-  raw_query <- scrapeR::scrape(query)
+  raw_query <- scrapeR::scrape(query, parse = TRUE)
 
   return(raw_query)
 }
