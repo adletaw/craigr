@@ -17,10 +17,12 @@ get_num_results <- function(query)
   ## The raw query
   raw_query <- read_html(query)
 
+  ## Get the total result count and convert to numeric
   tot_results <- raw_query %>%
     html_nodes("span.totalcount") %>%
     extract(1) %>%
-    html_text()
+    html_text() %>%
+    as.numeric
 
   return(tot_results)
 }
