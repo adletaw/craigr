@@ -2,4 +2,4 @@
 
 craigs_places <- read.csv("dictionary/places.csv", stringsAsFactors = FALSE)
 
-save(craigs_places, file = "data/craigs_places.rda")
+save(craigs_places, file = "R/sysdata.rda")
