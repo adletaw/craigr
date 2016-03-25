@@ -12,10 +12,6 @@
 #' @param sqft_min Optional numeric containing minimum square footage.
 #' @param sqft_max Optional numeric containing maximum square footage.
 #'
-#' @return A captioner function.
-#'
-#' @examples
-#'
 #' @export
 
 list_housing <- function(city = "Seattle", key = NA, price_min = NA,
