@@ -22,29 +22,29 @@ get_query <- function(query, type = "apa")
   ## Select out the apartment ads
   raw_ads <- html_nodes(raw_query, "span.txt")
 
-  # ## Get the titles
-  titles_raw   <- html_nodes(raw_ads, "span#titletextonly")
-  titles_clean <- html_text(titles_raw)
+  ## Loop through to make sure no data is missing
+  for(i in 1:length(raw_ads)){
+    ## Post title
+    title <- raw_ads[i] %>%
+      html_node("span#titletextonly") %>%
+      html_text()
 
-  ## Get the prices
-  prices_raw   <- html_nodes(raw_ads, "span.price")
-  prices_clean <- prices_raw %>%
-    html_text() %>%
-    stringr::str_extract("[0-9]+") %>%
-    as.numeric()
+    ## Post price
+    price <- raw_ads[i] %>%
+      html_node("span.price") %>%
+      html_text() %>%
+      string::str_extract("[0-9]+") %>%
+      as.numeric()
 
-  ## Get the post date
-  dates_raw   <- html_nodes(raw_ads, "time")
-  dates_clean <- c()
-  for(i in 1:length(dates_raw)){
-    dates_clean[i] <- html_attr(dates_raw[i], "datetime")
-  }
+    ## Post date
+    date <- raw_ads[i] %>%
+      html_node("time") %>%
+      html_attr("datetime")
 
-  ## Get the url
-  urls_raw   <- html_nodes(raw_ads, "a")
-  urls_clean <- c()
-  for(i in 1:length(urls_raw)){
-    urls_clean[i] <- html_attr(urls_raw[i], "href")
+    ## Post url
+    url <- raw_ads[i] %>%
+      html_node("a") %>%
+      html_attr("href")
   }
 
   ## Bind the data
