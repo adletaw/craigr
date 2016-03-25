@@ -51,16 +51,16 @@ list_housing <- function(location = "seattle", area = "all", base_url = NULL,
     area <- "all"
   }
   # Check remaining parameter classes
-  check_class(bedrooms, numeric)
-  check_class(bathrooms, numeric)
-  check_class(min_price, numeric)
-  check_class(max_price, numeric)
-  check_class(min_sqft, numeric)
-  check_class(max_sqft, numeric)
-  check_class(has_pic, logical)
-  check_class(posted_today, logical)
-  check_class(pets_cat, logical)
-  check_class(pets_dog, logical)
+  check_class(bedrooms,     "numeric")
+  check_class(bathrooms,    "numeric")
+  check_class(min_price,    "numeric")
+  check_class(max_price,    "numeric")
+  check_class(min_sqft,     "numeric")
+  check_class(max_sqft,     "numeric")
+  check_class(has_pic,      "logical")
+  check_class(posted_today, "logical")
+  check_class(pets_cat,     "logical")
+  check_class(pets_dog,     "logical")
 
   ## Generate the base url based on specified location and area
   ## If "base_url" is specified, this section will be skipped
