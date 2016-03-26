@@ -1,4 +1,4 @@
-#' List housing
+#' List Available Rentals
 #'
 #' @description Get a list of housing available on craiglist using your own
 #' specifications
@@ -41,14 +41,12 @@
 #'
 #' @export
 #'
-list_housing <- function(location = "seattle", area = "all", base_url = NULL,
-                         max_results = 2500, query = NULL,
-                         search_distance = NULL, postal = NULL,
-                         bedrooms = NULL, bathrooms = NULL,
-                         min_price = NULL, max_price = NULL,
-                         min_sqft = NULL, max_sqft = NULL,
-                         has_pic = FALSE, posted_today = FALSE,
-                         pets_cat = FALSE, pets_dog = FALSE)
+rentals <- function(location = "seattle", area = "all", base_url = NULL,
+                    max_results = 2500, query = NULL, postal = NULL,
+                    search_distance = NULL, bedrooms = NULL, bathrooms = NULL,
+                    min_price = NULL, max_price = NULL, min_sqft = NULL,
+                    max_sqft = NULL, has_pic = FALSE, posted_today = FALSE,
+                    pets_cat = FALSE, pets_dog = FALSE)
 {
   ## Preliminary input checks -----
   # Convert location and area to all lowercase
