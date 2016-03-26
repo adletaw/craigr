@@ -33,6 +33,11 @@ The area allows you to filter to a more specific location according to the
 pre-programmed options in Craigslist.  Using `all` will search the entire location
 (in this case, the greater Seattle metro).
 
-```{r location}
-craigr::list_housing(location = "seattle", area = "all", max_results = 100)
+```{r location, message = FALSE}
+results <- craigr::list_housing(location = "seattle", area = "all", 
+                                max_results = 100)
+
+head(results)
 ```
+
+The listing title, price, data and url are provided.
