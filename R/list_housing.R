@@ -137,7 +137,7 @@ list_housing <- function(location = "seattle", area = "all", base_url = NULL,
   }
   # Calculate the number of pages to download (craigslist puts 100 results
   # per page)
-  num_pages   <- trunc(tot_results/100) - 1
+  num_pages <- ceiling(tot_results/100) - 1
 
   # Go through each page of craigslist using a loop
   for(i in 0:num_pages)
