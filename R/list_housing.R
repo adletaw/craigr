@@ -35,8 +35,7 @@ list_housing <- function(location = "seattle", area = "all", base_url = NULL,
                          has_pic = FALSE, posted_today = FALSE,
                          pets_cat = FALSE, pets_dog = FALSE)
 {
-  ## Input checks
-
+  ## Preliminary input checks -----
   # Convert location and area to all lowercase
   location <- tolower(location)
   area <- tolower(area)
@@ -50,33 +49,14 @@ list_housing <- function(location = "seattle", area = "all", base_url = NULL,
     warning("That area is invalid.  Defaulting to 'all'.")
     area <- "all"
   }
-  # Check remaining parameter classes
-  if(!missing(bedrooms)){
-    check_class(bedrooms, "numeric")
-  }
-  if(!missing(bathrooms)){
-    check_class(bathrooms, "numeric")
-  }
-  if(!missing(min_price)){
-    check_class(min_price, "numeric")
-  }
-  if(!missing(max_price)){
-    check_class(max_price, "numeric")
-  }
-  if(!missing(min_sqft)){
-    check_class(min_sqft, "numeric")
-  }
-  if(!missing(max_sqft)){
-    check_class(max_sqft, "numeric")
-  }
-
+  # Check the parameters that are not NULL by default
   check_class(has_pic,      "logical")
   check_class(posted_today, "logical")
   check_class(pets_cat,     "logical")
   check_class(pets_dog,     "logical")
 
-  ## Generate the base url based on specified location and area
-  ## If "base_url" is specified, this section will be skipped
+  ## Generate the base url based on specified location and area -----
+  ## If "base_url" is specified, this section will be skipped   -----
   if(missing("base_url"))
   {
     base_url <- get_base_url(location, area)
@@ -86,26 +66,34 @@ list_housing <- function(location = "seattle", area = "all", base_url = NULL,
   # Vector to whold query components
   queries <- c("?")
 
-  # Generate queries
+  # Generate queries while simultaneously checking that the user supplied inputs
+  # of the correct class.
   if(!(missing(query))){
+    check_class(query, "character")
     queries <- c(queries, paste0("query=", query))
   }
   if(!(missing(bedrooms))){
+    check_class(bedrooms, "numeric")
     queries <- c(queries, paste0("bedrooms=", bedrooms))
   }
   if(!(missing(bathrooms))){
+    check_class(bathrooms, "numeric")
     queries <- c(queries, paste0("bathrooms=", bathrooms))
   }
   if(!(missing(min_price))){
+    check_class(min_price, "numeric")
     queries <- c(queries, paste0("min_price=", min_price))
   }
   if(!(missing(max_price))){
+    check_class(max_price, "numeric")
     queries <- c(queries, paste0("max_price=", max_price))
   }
   if(!(missing(min_sqft))){
+    check_class(min_sqft, "numeric")
     queries <- c(queries, paste0("minSqft=", min_sqft))
   }
   if(!(missing(max_sqft))){
+    check_class(max_sqft, "numeric")
     queries <- c(queries, paste0("maxSqft=", max_sqft))
   }
   if(has_pic){
@@ -130,7 +118,7 @@ list_housing <- function(location = "seattle", area = "all", base_url = NULL,
     query_url <- base_url
   }
 
-  ## Scrape and clean the results of the query
+  ## Scrape and clean the results of the query -----
 
   # How many results are available?
   tot_results <- get_num_results(query_url)
