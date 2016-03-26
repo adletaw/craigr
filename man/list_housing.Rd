@@ -5,9 +5,10 @@
 \title{List housing}
 \usage{
 list_housing(location = "seattle", area = "all", base_url = NULL,
-  query = NULL, bedrooms = NULL, bathrooms = NULL, min_price = NULL,
-  max_price = NULL, min_sqft = NULL, max_sqft = NULL, has_pic = FALSE,
-  posted_today = FALSE, pets_cat = FALSE, pets_dog = FALSE)
+  max_results = 2500, query = NULL, bedrooms = NULL, bathrooms = NULL,
+  min_price = NULL, max_price = NULL, min_sqft = NULL, max_sqft = NULL,
+  has_pic = FALSE, posted_today = FALSE, pets_cat = FALSE,
+  pets_dog = FALSE)
 }
 \arguments{
 \item{location}{Character vector containing the region to look in. Default
@@ -18,6 +19,9 @@ is "all".}
 
 \item{base_url}{Optional character vector containing the craigslist base url.
 This overwrites the \code{location} and \code{area} parameters if supplied.}
+
+\item{max_results}{Numeric specifying the maximum number of results to
+display.  Defaults at the craigslist maximum of 2500.}
 
 \item{bedrooms}{Optional character vector specifying the desired number of
 bedrooms.}
