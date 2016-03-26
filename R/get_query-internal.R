@@ -55,7 +55,7 @@ get_query <- function(query, type = "apa")
     ## Post url
     url <- raw_ads[i] %>%
       html_node("a") %>%
-      html_attr("href")
+      html_attr("data-id")
 
     ## Populate data vectors
     titles <- c(titles, title)
