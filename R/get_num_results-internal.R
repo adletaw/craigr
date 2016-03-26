@@ -11,17 +11,14 @@
 #'
 get_num_results <- function(query)
 {
-  require(rvest)
-  require(magrittr)
-
   ## The raw query
-  raw_query <- read_html(query)
+  raw_query <- rvest::read_html(query)
 
   ## Get the total result count and convert to numeric
   tot_results <- raw_query %>%
-    html_nodes("span.totalcount") %>%
+    rvest::html_nodes("span.totalcount") %>%
     extract(1) %>%
-    html_text() %>%
+    rvest::html_text() %>%
     as.numeric()
 
   return(tot_results)
