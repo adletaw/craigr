@@ -15,7 +15,7 @@
 get_query <- function(query, type = "apa")
 {
   ## The raw query
-  raw_query <- rvest::read_html(query)
+  raw_query <- xml2::read_html(query)
 
   ## The base url (for appending to listing URLs)
   base_url <- rvest::html_nodes(raw_query, ".header-logo") %>%
