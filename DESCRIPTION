@@ -12,5 +12,6 @@ Imports:
   rvest,
   stringr,
 Depends:
+  R (>= 3.2.3),
   magrittr
 RoxygenNote: 5.0.1
