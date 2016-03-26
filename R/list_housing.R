@@ -26,6 +26,11 @@
 #' @param pets_dog Logical specifying whether apartment must allow dogs. Default
 #' is \code{FALSE}.
 #'
+#' @examples
+#'
+#' list_housing(location = "seattle", area = "seattle", bedrooms = 5,
+#'              query = "downtown")
+#'
 #' @export
 #'
 list_housing <- function(location = "seattle", area = "all", base_url = NULL,

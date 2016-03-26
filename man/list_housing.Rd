@@ -49,4 +49,10 @@ is \code{FALSE}.}
 Get a list of housing available on craiglist using your own
 specifications
 }
+\examples{
+
+list_housing(location = "seattle", area = "seattle", bedrooms = 5,
+             query = "downtown")
+
+}
 
