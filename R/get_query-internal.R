@@ -20,7 +20,8 @@ get_query <- function(query, type = "apa")
   raw_query <- read_html(query)
 
   ## The base url (for appending to listing URLs)
-  base_url <- html_node(raw_query, ".header-logo") %>%
+  base_url <- html_nodes(raw_query, ".header-logo") %>%
+    extract[[1]] %>%
     html_attr("href")
 
   ## Select out the apartment ads
