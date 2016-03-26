@@ -34,5 +34,5 @@ pre-programmed options in Craigslist.  Using `all` will search the entire locati
 (in this case, the greater Seattle metro).
 
 ```{r location}
-list_housing(location = "seattle", area = "all", max_results = 100)
+craigr::list_housing(location = "seattle", area = "all", max_results = 100)
 ```
