@@ -23,4 +23,16 @@ rental data only for Seattle or Houston only.
 
 ## Usage
 
-`list_housing(bedrooms = 2, bathrooms = 1)`
+*craigr* will do an apartment search using the function `list_housing`.  You can
+supply almost any search parameters that are available on craiglist.  
+
+First you have to specify the location and area.  The location works as the 
+Craigslist subdomain, e.g. [seattle.craigslist.org](https://seattle.craigslist.org)
+
+The area allows you to filter to a more specific location according to the
+pre-programmed options in Craigslist.  Using `all` will search the entire location
+(in this case, the greater Seattle metro).
+
+```{r location}
+list_housing(location = "seattle", area = "all", max_results = 100)
+```
