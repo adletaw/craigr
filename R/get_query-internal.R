@@ -13,9 +13,6 @@
 #'
 get_query <- function(query, type = "apa")
 {
-  require(rvest)
-  require(magrittr)
-
   ## The raw query
   raw_query <- read_html(query)
 
