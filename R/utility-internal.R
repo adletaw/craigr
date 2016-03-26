@@ -8,7 +8,7 @@
 #'
 check_class <- function(param, expect_class){
   if(class(param)!=expect_class){
-    stop(paste(param, "must be of class", expect_class, sep = " "))
+    stop(paste("must be of class", expect_class, sep = " "))
   } else{
     return(invisible)
   }
