@@ -22,6 +22,7 @@ get_query <- function(query, type = "apa")
   ## Select out the apartment ads
   raw_ads <- html_nodes(raw_query, "span.txt")
 
+  ## Start empty vectors to hold ad data
   titles <- c()
   prices <- c()
   dates  <- c()
