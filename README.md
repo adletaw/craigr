@@ -1,4 +1,6 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+[![Travis-CI Build Status](https://travis-ci.org/adletaw/craigr.svg?branch=master)](https://travis-ci.org/adletaw/craigr)
+
 craigr: an R package to get data from craigslist
 ================================================
 
@@ -30,19 +32,19 @@ results <- craigr::list_housing(location = "seattle", area = "all",
 head(results)
 ```
 
-    ##                                                                    Title
-    ## 1                                                     Seatac Duplex 2b2b
-    ## 2        1 Bedroom Available April 17th! W/S/G included & Pet Friendly!!
-    ## 3 Washer & Dryer Included in EVERY unit, Gated Community, Pet Friendly!!
-    ## 4                   Live in the center of Capitol Hill. Hollywood Lofts!
-    ## 5                                2 Bedrooms 2 Bath Apartment in Kent, WA
-    ## 6      Plenty of Windows, Plenty of Natural Light! @ Latitude Apartments
+    ##                                                                 Title
+    ## 1    Spring Into This Gorgeous Studio Coming Available In April! *105
+    ## 2      3 Bedroom Washer/Dryer, Patio, Extra Storage! Come Tour Today!
+    ## 3 Got a tattoo you regret?! This apartment will help the pain go away
+    ## 4                                   Welcome Home to One Canyon Place!
+    ## 5       The Only One Left! A Beautiful 2 Bedroom, One Bath Ready Now!
+    ## 6                                          OBR/1 BA 1100FT2 SANDPOINT
     ##   Price             Date                      URL
-    ## 1  1450 2016-03-25 17:45 /skc/apa/5508557352.html
-    ## 2   968 2016-03-25 17:44 /see/apa/5508544898.html
-    ## 3  1249 2016-03-25 17:44 /tac/apa/5508546994.html
-    ## 4  2450 2016-03-25 17:44 /see/apa/5508556381.html
-    ## 5  1305 2016-03-25 17:44 /skc/apa/5508510980.html
-    ## 6  2995 2016-03-25 17:44 /see/apa/5508550133.html
+    ## 1  1492 2016-03-26 14:16 /see/apa/5509745151.html
+    ## 2  1740 2016-03-26 14:16 /sno/apa/5509744977.html
+    ## 3  1813 2016-03-26 14:16 /see/apa/5509744936.html
+    ## 4  1040 2016-03-26 14:16 /tac/apa/5509744744.html
+    ## 5  1265 2016-03-26 14:15 /tac/apa/5509744390.html
+    ## 6  1650 2016-03-26 14:15 /see/apa/5499049406.html
 
 The listing title, price, data and url are provided.
