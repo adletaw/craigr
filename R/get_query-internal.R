@@ -19,6 +19,10 @@ get_query <- function(query, type = "apa")
   ## The raw query
   raw_query <- read_html(query)
 
+  ## The base url (for appending to listing URLs)
+  base_url <- html_node(raw_query, ".header-logo") %>%
+    html_attr("href")
+
   ## Select out the apartment ads
   raw_ads <- html_nodes(raw_query, "span.txt")
 
@@ -56,7 +60,8 @@ get_query <- function(query, type = "apa")
     ## Post url
     url <- raw_ads[i] %>%
       html_node("a") %>%
-      html_attr("data-id")
+      html_attr("href") %>%
+      paste0(base_url, .)
 
     ## Populate data vectors
     titles <- c(titles, title)
