@@ -10,7 +10,8 @@
 #' @param base_url Optional character vector containing the craigslist base url.
 #' This overwrites the \code{location} and \code{area} parameters if supplied.
 #' @param max_results Numeric specifying the maximum number of results to
-#' display.  Defaults at the craigslist maximum of 2500.
+#' display.  Results are obtained 100 at a time, so the value will be rounded
+#' to the nearest 100.  Defaults at the craigslist maximum of 2500.
 #' @param bedrooms Optional character vector specifying the desired number of
 #' bedrooms.
 #' @param bathrooms Optional character vector specifying the desired number of
