@@ -12,6 +12,11 @@
 #' @param max_results Numeric specifying the maximum number of results to
 #' display.  Results are obtained 100 at a time, so the value will be rounded
 #' to the nearest 100.  Defaults at the craigslist maximum of 2500.
+#' @param query Optional character vector containing a search term to supply
+#' to craiglist.
+#' @param search_distance Optional numeric supplying a distance from the
+#' specified postal code.
+#' @param postal Optional numeric postal code specifying an area to search in.
 #' @param bedrooms Optional character vector specifying the desired number of
 #' bedrooms.
 #' @param bathrooms Optional character vector specifying the desired number of
@@ -37,8 +42,9 @@
 #' @export
 #'
 list_housing <- function(location = "seattle", area = "all", base_url = NULL,
-                         max_results = 2500,
-                         query = NULL, bedrooms = NULL, bathrooms = NULL,
+                         max_results = 2500, query = NULL,
+                         search_distance = NULL, postal = NULL,
+                         bedrooms = NULL, bathrooms = NULL,
                          min_price = NULL, max_price = NULL,
                          min_sqft = NULL, max_sqft = NULL,
                          has_pic = FALSE, posted_today = FALSE,
@@ -105,6 +111,14 @@ list_housing <- function(location = "seattle", area = "all", base_url = NULL,
   if(!(missing(max_sqft))){
     check_class(max_sqft, "numeric")
     queries <- c(queries, paste0("maxSqft=", max_sqft))
+  }
+  if(!(missing(search_distance))){
+    check_class(search_distance, "numeric")
+    queries <- c(queries, paste0("search_distance=", search_distance))
+  }
+  if(!(missing(postal))){
+    check_class(postal, "numeric")
+    queries <- c(queries, paste0("postal=", postal))
   }
   if(has_pic){
     queries <- c(queries, "hasPic=1")
