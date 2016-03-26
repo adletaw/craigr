@@ -1,0 +1,5 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+beta_testing/
+dictionary/
+^\.travis\.yml$
