@@ -6,6 +6,7 @@
 #'
 #' @return
 #'
+#' @import magrittr
 #' @keywords internal
 #' @export
 #'
