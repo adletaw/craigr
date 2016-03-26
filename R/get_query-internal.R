@@ -14,15 +14,15 @@
 get_query <- function(query, type = "apa")
 {
   ## The raw query
-  raw_query <- read_html(query)
+  raw_query <- rvest::read_html(query)
 
   ## The base url (for appending to listing URLs)
-  base_url <- html_nodes(raw_query, ".header-logo") %>%
+  base_url <- rvest::html_nodes(raw_query, ".header-logo") %>%
     extract(1) %>%
-    html_attr("href")
+    rvest::html_attr("href")
 
   ## Select out the apartment ads
-  raw_ads <- html_nodes(raw_query, "span.txt")
+  raw_ads <- rvest::html_nodes(raw_query, "span.txt")
 
   ## Start empty vectors to hold ad data
   titles <- c()
@@ -34,13 +34,13 @@ get_query <- function(query, type = "apa")
   for(i in 1:length(raw_ads)){
     ## Post title
     title <- raw_ads[i] %>%
-      html_node("span#titletextonly") %>%
-      html_text()
+      rvest::html_node("span#titletextonly") %>%
+      rvest::html_text()
 
     ## Post price
     price <- try({raw_ads[i] %>%
-      html_node("span.price") %>%
-      html_text() %>%
+      rvest::html_node("span.price") %>%
+      rvest::html_text() %>%
       stringr::str_extract("[0-9]+") %>%
       as.numeric()
     }, silent = TRUE)
@@ -52,13 +52,13 @@ get_query <- function(query, type = "apa")
 
     ## Post date
     date <- raw_ads[i] %>%
-      html_node("time") %>%
-      html_attr("datetime")
+      rvest::html_node("time") %>%
+      rvest::html_attr("datetime")
 
     ## Post url
     url <- raw_ads[i] %>%
-      html_node("a") %>%
-      html_attr("href") %>%
+      rvest::html_node("a") %>%
+      rvest::html_attr("href") %>%
       paste0(base_url, .)
 
     ## Populate data vectors

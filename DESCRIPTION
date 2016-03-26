@@ -8,5 +8,10 @@ Description: This package allows you to query craigslist using the same search
   data frame allowing easy analysis.
 License: MIT + file LICENSE
 LazyData: TRUE
-Imports: rvest, stringr, magrittr
+Imports:
+  rvest,
+  stringr,
+  magrittr
+Depends:
+  magrittr
 RoxygenNote: 5.0.1
