@@ -3,3 +3,4 @@
 beta_testing/
 dictionary/
 ^\.travis\.yml$
+README.Rmd
