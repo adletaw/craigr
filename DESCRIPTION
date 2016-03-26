@@ -11,6 +11,7 @@ LazyData: TRUE
 Imports:
   rvest,
   stringr,
+  xml2
 Depends:
   R (>= 3.2.3),
   magrittr
