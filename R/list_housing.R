@@ -9,6 +9,8 @@
 #' is "all".
 #' @param base_url Optional character vector containing the craigslist base url.
 #' This overwrites the \code{location} and \code{area} parameters if supplied.
+#' @param max_results Numeric specifying the maximum number of results to
+#' display.  Defaults at the craigslist maximum of 2500.
 #' @param bedrooms Optional character vector specifying the desired number of
 #' bedrooms.
 #' @param bathrooms Optional character vector specifying the desired number of
@@ -34,6 +36,7 @@
 #' @export
 #'
 list_housing <- function(location = "seattle", area = "all", base_url = NULL,
+                         max_results = 2500,
                          query = NULL, bedrooms = NULL, bathrooms = NULL,
                          min_price = NULL, max_price = NULL,
                          min_sqft = NULL, max_sqft = NULL,
@@ -59,6 +62,7 @@ list_housing <- function(location = "seattle", area = "all", base_url = NULL,
   check_class(posted_today, "logical")
   check_class(pets_cat,     "logical")
   check_class(pets_dog,     "logical")
+  check_class(max_results,  "numeric")
 
   ## Generate the base url based on specified location and area -----
   ## If "base_url" is specified, this section will be skipped   -----
@@ -127,6 +131,12 @@ list_housing <- function(location = "seattle", area = "all", base_url = NULL,
 
   # How many results are available?
   tot_results <- get_num_results(query_url)
+  # Use user specified max results if it is less than the num. available results
+  if(max_results < tot_results){
+    tot_results <- max_results
+  }
+  # Calculate the number of pages to download (craigslist puts 100 results
+  # per page)
   num_pages   <- trunc(tot_results/100) - 1
 
   # Go through each page of craigslist using a loop
