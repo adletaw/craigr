@@ -71,10 +71,10 @@ get_query <- function(query, type = "apa")
     }
 
     ## Populate data vectors
-    titles  <- c(titles, title)
-    prices  <- c(prices, price)
-    dates   <- c(dates,  date)
-    urls    <- c(urls,   url)
+    titles  <- c(titles,  title)
+    prices  <- c(prices,  price)
+    dates   <- c(dates,   date)
+    urls    <- c(urls,    url)
     locales <- c(locales, locale)
   }
 
