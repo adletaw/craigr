@@ -33,15 +33,12 @@ get_query <- function(query, type = "apa")
       rvest::html_text()
 
     ## Post price (returns NA if an error is generated)
-    price <- try({
-      raw_ads[i] %>%
+    price <- na_error({raw_ads[i] %>%
       rvest::html_node("span.price") %>%
       rvest::html_text() %>%
       stringr::str_extract("[0-9]+") %>%
       as.numeric()
-    }, silent = TRUE)
-
-    if(class(price == "try-error")){ price <- NA }
+    })
 
     ## Post date
     date <- raw_ads[i] %>%
@@ -55,42 +52,28 @@ get_query <- function(query, type = "apa")
       paste0(base_url, .)
 
     ## Approx location (returns NA if an error is generated)
-    locale <- try({
-      raw_ads[i] %>%
+    locale <- na_error({raw_ads[i] %>%
       rvest::html_node("span.pnr small") %>%
       rvest::html_text()
-    }, silent = TRUE)
-
-    if(class(locale == "try-error")){ locale <- NA }
+    })
 
     ## Post bedrooms and sqft (returns NA if an error is generated)
-    size <- try({
-      raw_ads[i] %>%
+    size <- na_error({raw_ads[i] %>%
       rvest::html_node("housing") %>%
       rvest::html_text()
-    }, silent = TRUE)
+    })
 
-    if(class(size == "try-error")){ size <- NA }
+    # Obtain num bedrooms (returns NA if an error is generated)
+    bed <- na_error({size %>%
+      stringr::str_extract("[0-9]*br") %>%
+      stringr::str_replace("br", "")
+    })
 
-    if(!is.na(size)){
-      # Obtain num bedrooms (returns NA if an error is generated)
-      bed <- try({
-        size %>%
-        stringr::str_extract("[0-9]*br") %>%
-        stringr::str_replace("br", "")
-      }, silent = TRUE)
-
-      if(class(bed == "try-error")){ bed <- NA }
-
-      # Obtain square footage (returns NA if an error is generated)
-      sqft <- try({
-        size %>%
-        stringr::str_extract("[0-9]*ft") %>%
-        stringr::str_replace("ft", "")
-      }, silent = TRUE)
-
-      if(class(sqft == "try-error")){ sqft <- NA }
-    }
+    # Obtain square footage (returns NA if an error is generated)
+    sqft <- na_error({size %>%
+      stringr::str_extract("[0-9]*ft") %>%
+      stringr::str_replace("ft", "")
+    })
 
     ## Populate data vectors
     if(i == 1){

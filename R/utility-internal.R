@@ -37,3 +37,26 @@ create_vector <- function(env = environment(), names){
   }
   return(invisible())
 }
+
+#' Convert errors to NA
+#'
+#' @description Given an expression, try to evaluate and return NA if there is
+#' an error.
+#'
+#' @param expr The expression to evaluate
+#'
+#' @keywords internal
+#' @export
+#'
+na_error <- function(expr){
+  ## Try the expression
+  try_it <- try(expr, silent = TRUE)
+
+  if(class(try_it) == "try-error"){
+    ## Return NA if there is an error
+    return(NA)
+  } else{
+    ## Return the output of the expression if there is no error
+    return(try_it)
+  }
+}
