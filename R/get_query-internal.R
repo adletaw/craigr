@@ -83,7 +83,7 @@ get_query <- function(query, type = "apa")
   }
 
   ## Remove parens from locations
-  locales <- str_replace_all(locales, "[\\)\\()]", "")
+  locales <- stringr::str_replace_all(locales, "[\\)\\()]", "")
 
 
   ## Bind the data
