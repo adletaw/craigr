@@ -39,23 +39,18 @@ create_vector <- function(...){
 
 #' Errors to NA
 #'
-#' @description If a code chunk leads to an error, return NA
+#' @description If an object contains an error, return NA
 #'
-#' @param ...Code to try
+#' @param obj Object to check for an error
 #'
 #' @keywords internal
 #' @export
 #'
-na_errors <- function(expr){
+na_error <- function(obj){
   # Try the code
-  try_it <- try({expr}, silent = TRUE)
-
-  # Check for an error
-  if(class(try_it=="try-error")){
-    # Return NA if an error is found
+  if(class(obj) == "try_error"){
     return(NA)
   } else{
-    # Return code output if error not found
-    return(try_it)
+    return(obj)
   }
 }
