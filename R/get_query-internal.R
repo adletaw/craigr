@@ -60,15 +60,9 @@ get_query <- function(query, type = "apa")
       paste0(base_url, .)
 
     ## Approx location
-    locale <- try({raw_ads[i] %>%
+    locale <- na_errors(raw_ads[i] %>%
       rvest::html_node("span.pnr small") %>%
-      rvest::html_text()
-    }, silent = TRUE)
-
-    # If there was an error, set locale to NA
-    if(class(locale)=="try-error"){
-      locale <- NA
-    }
+      rvest::html_text())
 
     ## Post bedrooms and sqft
     size <- raw_ads[i] %>%
@@ -84,8 +78,6 @@ get_query <- function(query, type = "apa")
     sqft <- size %>%
       stringr::str_extract("[0-9]*ft") %>%
       stringr::str_replace("ft", "")
-
-
 
     ## Populate data vectors
     titles  <- c(titles,  title)
