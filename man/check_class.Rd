@@ -6,6 +6,12 @@
 \usage{
 check_class(param, expect_class)
 }
+\arguments{
+\item{param}{The parameter to check the class of}
+
+\item{expect_class}{Character string containing the name of the class
+expected for \code{param}.}
+}
 \description{
 Check the class of a supplied parameter to make sure it matches
 expectations.
