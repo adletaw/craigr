@@ -5,7 +5,7 @@
 \title{List Available Rentals}
 \usage{
 rentals(location = "seattle", area = "all", base_url = NULL,
-  max_results = 2500, query = NULL, postal = NULL,
+  detailed = FALSE, max_results = 2500, query = NULL, postal = NULL,
   search_distance = NULL, bedrooms = NULL, bathrooms = NULL,
   min_price = NULL, max_price = NULL, min_sqft = NULL, max_sqft = NULL,
   has_pic = FALSE, posted_today = FALSE, pets_cat = FALSE,
@@ -20,6 +20,10 @@ is "all".}
 
 \item{base_url}{Optional character vector containing the craigslist base url.
 This overwrites the \code{location} and \code{area} parameters if supplied.}
+
+\item{detailed}{Logical indicating whether to return detailed search results,
+attempting to scrape extra information from listing pages.  Detailed results
+take longer to acquire. Default is \code{FALSE}.}
 
 \item{max_results}{Numeric specifying the maximum number of results to
 display.  Results are obtained 100 at a time, so the value will be rounded

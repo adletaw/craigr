@@ -9,6 +9,9 @@
 #' is "all".
 #' @param base_url Optional character vector containing the craigslist base url.
 #' This overwrites the \code{location} and \code{area} parameters if supplied.
+#' @param detailed Logical indicating whether to return detailed search results,
+#' attempting to scrape extra information from listing pages.  Detailed results
+#' take longer to acquire. Default is \code{FALSE}.
 #' @param max_results Numeric specifying the maximum number of results to
 #' display.  Results are obtained 100 at a time, so the value will be rounded
 #' to the nearest 100.  Defaults at the craigslist maximum of 2500.
@@ -42,6 +45,7 @@
 #' @export
 #'
 rentals <- function(location = "seattle", area = "all", base_url = NULL,
+                    detailed = FALSE,
                     max_results = 2500, query = NULL, postal = NULL,
                     search_distance = NULL, bedrooms = NULL, bathrooms = NULL,
                     min_price = NULL, max_price = NULL, min_sqft = NULL,
