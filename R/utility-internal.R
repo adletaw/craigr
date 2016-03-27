@@ -13,3 +13,22 @@ check_class <- function(param, expect_class){
     return(invisible)
   }
 }
+
+#' Create empty vectors
+#'
+#' @description Create any number of empty vectors and assign them to the parent
+#' environment.
+#'
+#' @param ... Names for any number of vectors to create
+#'
+#' @keywords internal
+#' @export
+#'
+create_vector <- function(...){
+  for(i in 1:length(list(...))){
+    assign(...[[i]],
+           vector(),
+           envir = parent.env(environment()))
+  }
+  return(invisible())
+}
