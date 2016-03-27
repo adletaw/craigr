@@ -37,21 +37,3 @@ create_vector <- function(env = environment(), names){
   }
   return(invisible())
 }
-
-#' Errors to NA
-#'
-#' @description If an object contains an error, return NA
-#'
-#' @param obj Object to check for an error
-#'
-#' @keywords internal
-#' @export
-#'
-na_error <- function(obj){
-  # Try the code
-  if(class(obj) == "try_error"){
-    return(NA)
-  } else{
-    return(obj)
-  }
-}

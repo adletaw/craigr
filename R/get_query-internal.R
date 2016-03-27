@@ -44,8 +44,9 @@ get_query <- function(query, type = "apa")
       rvest::html_text() %>%
       stringr::str_extract("[0-9]+") %>%
       as.numeric()
-    }, silent = TRUE) %>%
-      na_error()
+      }, silent = TRUE)
+
+    if(class(price == "try-error")){price <- NA}
 
     ## Post date
     date <- raw_ads[i] %>%
@@ -63,30 +64,38 @@ get_query <- function(query, type = "apa")
       raw_ads[i] %>%
       rvest::html_node("span.pnr small") %>%
       rvest::html_text()
-    }, silent = TRUE) %>%
-      na_error()
+    }, silent = TRUE)
+
+    if(class(locale == "try-error")){locale <- NA}
 
     ## Post bedrooms and sqft (returns NA if an error is generated)
     size <- try({
       raw_ads[i] %>%
       rvest::html_node("housing") %>%
       rvest::html_text()
-    }, silent = TRUE) %>%
-      na_error()
+    }, silent = TRUE)
 
-    # Obtain num bedrooms (returns NA if an error is generated)
-    bed <- try({size %>%
-      stringr::str_extract("[0-9]*br") %>%
-      stringr::str_replace("br", "")
-    }, silent = TRUE) %>%
-      na_error()
+    if(class(size == "try-error")){size <- NA}
 
-    # Obtain square footage (returns NA if an error is generated)
-    sqft <- try({size %>%
-      stringr::str_extract("[0-9]*ft") %>%
-      stringr::str_replace("ft", "")
-    }, silent = TRUE) %>%
-      na_error()
+    if(!is.na(size)){
+      # Obtain num bedrooms (returns NA if an error is generated)
+      bed <- try({
+        size %>%
+        stringr::str_extract("[0-9]*br") %>%
+        stringr::str_replace("br", "")
+      }, silent = TRUE)
+
+      if(class(bed == "try-error")){bed <- NA}
+
+      # Obtain square footage (returns NA if an error is generated)
+      sqft <- try({
+        size %>%
+        stringr::str_extract("[0-9]*ft") %>%
+        stringr::str_replace("ft", "")
+      }, silent = TRUE)
+
+      if(class(sqft == "try-error")){sqft <- NA}
+    }
 
     ## Populate data vectors
     titles  <- c(titles,  title)
