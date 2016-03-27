@@ -13,7 +13,7 @@
 get_num_results <- function(query)
 {
   ## The raw query
-  raw_query <- rvest::read_html(query)
+  raw_query <- xml2::read_html(query)
 
   ## Get the total result count and convert to numeric
   tot_results <- raw_query %>%
