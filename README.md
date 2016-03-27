@@ -19,16 +19,21 @@ This package is under active develpment. Currently, you can download housing ren
 Usage
 -----
 
-*craigr* will do an apartment search using the function `rentals`. You can supply almost any search parameters that are available on craiglist.
+### Finding available rentals
 
-First you have to specify the location and area. The location works as the Craigslist subdomain, e.g. [seattle.craigslist.org](https://seattle.craigslist.org)
+*craigr* will do an apartment search using the function `rentals`. You can supply almost any search parameters that are available on craiglist. See the help page for `rentals` to get the full parameter list.
 
-The area allows you to filter to a more specific location according to the pre-programmed options in Craigslist. Using `all` will search the entire location (in this case, the greater Seattle metro).
+First you have to specify the location and area. The location works as the Craigslist subdomain, e.g. [seattle.craigslist.org](https://seattle.craigslist.org). The area allows you to filter to a more specific location according to the pre-programmed three-letter coes in Craigslist. For example, using `see` limits the search to the Seattle city limits only.
 
 ``` r
-results <- craigr::rentals(location = "seattle", area = "all", 
+results <- craigr::rentals(location = "seattle", area = "see", 
                            max_results = 100)
+```
 
+    ## Warning in craigr::rentals(location = "seattle", area = "see", max_results
+    ## = 100): That area is invalid. Defaulting to 'all'.
+
+``` r
 head(results)
 ```
 
