@@ -37,7 +37,7 @@ The area allows you to filter to a more specific location according to the
 pre-programmed three-letter codes in Craigslist.  For example, using `see`
 limits the search to the Seattle city limits only.  The default is `all`.
 
-```{r location, message = FALSE, cache = TRUE}
+```{r location, message = FALSE}
 results <- craigr::rentals(location = "seattle", area = "see", 
                            max_results = 100)
 

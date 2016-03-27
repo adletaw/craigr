@@ -28,35 +28,23 @@ First you have to specify the location and area. The location works as the Craig
 ``` r
 results <- craigr::rentals(location = "seattle", area = "see", 
                            max_results = 100)
-```
 
-    ## Warning in craigr::rentals(location = "seattle", area = "see", max_results
-    ## = 100): That area is invalid. Defaulting to 'all'.
-
-``` r
 head(results)
 ```
 
-    ##                                                                 Title
-    ## 1             ONE BEDROOM, ONE BATHROOM, WATER/SEWER/GARBAGE INCLUDED
-    ## 2       Rent Your CLASSIC Home Today! Apply Now! Amazing Sweet Home!!
-    ## 3           Premium Home!! Great Space,Great Rooms, Great Community!!
-    ## 4                HAPPY EASTER!! COME BY AND SEE YOUR NEW HOME TODAY!!
-    ## 5 Gorgeous Seattle Home Without Paying Seattle Prices #LiveAtLeilani2
-    ## 6                     Updated 2 bedrm Duplex in Downtown Port Orchard
-    ##   Price             Date
-    ## 1   750 2016-03-27 12:17
-    ## 2  1100 2016-03-27 12:17
-    ## 3  1200 2016-03-27 12:16
-    ## 4    NA 2016-03-27 12:15
-    ## 5  1515 2016-03-27 12:14
-    ## 6  1075 2016-03-27 12:13
-    ##                                                      URL
-    ## 1 https://seattle.craigslist.org/sno/apa/5507119189.html
-    ## 2 https://seattle.craigslist.org/skc/apa/5510750745.html
-    ## 3 https://seattle.craigslist.org/skc/apa/5510750045.html
-    ## 4 https://seattle.craigslist.org/tac/apa/5510748933.html
-    ## 5 https://seattle.craigslist.org/see/apa/5510747340.html
-    ## 6 https://seattle.craigslist.org/kit/apa/5510746449.html
+    ##                                                                Title Price
+    ## 1                                    One Bed in Brand New Building!!  1895
+    ## 2                        *5902* Micro Studios in Ballard NOW LEASING   950
+    ## 3                 // BALLARD MICRO STUDIOS // All utilities included   950
+    ## 4      NEW Contemporary Homes in West Seattle, Vibrant Neighborhood!  1950
+    ## 5 One Bed - New Building - One Block From New Sound Transit Station!  1895
+    ## 6                   Ballard *2418* Micro Studios available APRIL 1st   950
+    ##               Date                                                    URL
+    ## 1 2016-03-27 12:24 https://seattle.craigslist.org/see/apa/5510759291.html
+    ## 2 2016-03-27 12:23 https://seattle.craigslist.org/see/apa/5486712510.html
+    ## 3 2016-03-27 12:23 https://seattle.craigslist.org/see/apa/5480062055.html
+    ## 4 2016-03-27 12:23 https://seattle.craigslist.org/see/apa/5510751064.html
+    ## 5 2016-03-27 12:23 https://seattle.craigslist.org/see/apa/5510752083.html
+    ## 6 2016-03-27 12:23 https://seattle.craigslist.org/see/apa/5489862949.html
 
 The listing title, price, data and url are provided. Check [craigslist](https://craigslist.org) to find the location subdomain and three-letter area code.
