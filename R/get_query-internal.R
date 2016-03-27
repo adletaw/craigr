@@ -26,7 +26,10 @@ get_query <- function(query, type = "apa")
   raw_ads <- rvest::html_nodes(raw_query, "span.txt")
 
   ## Start empty vectors to hold ad data
-  create_vector("titles", "prices", "beds", "sqfts", "dates", "urls", "locales")
+  create_vector(env = environment(),
+                c("titles", "prices", "beds", "sqfts", "dates", "urls",
+                  "locales")
+                )
 
   ## Loop through to make sure no data is missing
   for(i in 1:length(raw_ads)){
@@ -60,28 +63,29 @@ get_query <- function(query, type = "apa")
       raw_ads[i] %>%
       rvest::html_node("span.pnr small") %>%
       rvest::html_text()
-      }, silent = TRUE) %>%
+    }, silent = TRUE) %>%
       na_error()
 
     ## Post bedrooms and sqft (returns NA if an error is generated)
-    size <- try({raw_ads[i] %>%
+    size <- try({
+      raw_ads[i] %>%
       rvest::html_node("housing") %>%
       rvest::html_text()
-      }, silent = TRUE) %>%
+    }, silent = TRUE) %>%
       na_error()
 
     # Obtain num bedrooms (returns NA if an error is generated)
     bed <- try({size %>%
       stringr::str_extract("[0-9]*br") %>%
       stringr::str_replace("br", "")
-      }, silent = TRUE) %>%
-      na_error
+    }, silent = TRUE) %>%
+      na_error()
 
     # Obtain square footage (returns NA if an error is generated)
     sqft <- try({size %>%
       stringr::str_extract("[0-9]*ft") %>%
       stringr::str_replace("ft", "")
-      }, silent = TRUE) %>%
+    }, silent = TRUE) %>%
       na_error()
 
     ## Populate data vectors
