@@ -26,7 +26,7 @@ get_query <- function(query, type = "apa")
   raw_ads <- rvest::html_nodes(raw_query, "span.txt")
 
   ## Start empty vectors to hold ad data
-  create_vector("titles", "prices", "dates", "urls", "locales")
+  create_vector("titles", "prices", "beds", "sqfts", "dates", "urls", "locales")
 
   ## Loop through to make sure no data is missing
   for(i in 1:length(raw_ads)){
@@ -70,12 +70,16 @@ get_query <- function(query, type = "apa")
       locale <- NA
     }
 
+    ## Post bedrooms and sqft
+
     ## Populate data vectors
     titles  <- c(titles,  title)
     prices  <- c(prices,  price)
     dates   <- c(dates,   date)
     urls    <- c(urls,    url)
     locales <- c(locales, locale)
+    beds    <- c(beds,    bed)
+    sqft    <- c(sqfts,   sqft)
   }
 
   ## Remove parens from locations
@@ -86,6 +90,8 @@ get_query <- function(query, type = "apa")
   clean_data <- data.frame(Title    = titles,
                            Date     = dates,
                            Price    = prices,
+                           Bedrooms = beds,
+                           SqFt     = sqfts,
                            Location = locales,
                            URL      = urls)
 
