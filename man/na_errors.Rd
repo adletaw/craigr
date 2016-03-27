@@ -4,7 +4,7 @@
 \alias{na_errors}
 \title{Errors to NA}
 \usage{
-na_errors(...)
+na_errors(expr)
 }
 \arguments{
 \item{...Code}{to try}
