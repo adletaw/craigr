@@ -25,12 +25,6 @@ get_query <- function(query, type = "apa")
   ## Select out the apartment ads
   raw_ads <- rvest::html_nodes(raw_query, "span.txt")
 
-  ## Start empty vectors to hold ad data
-  create_vector(env = environment(),
-                c("titles", "prices", "beds", "sqfts", "dates", "urls",
-                  "locales")
-                )
-
   ## Loop through to make sure no data is missing
   for(i in 1:length(raw_ads)){
     ## Post title
@@ -39,14 +33,15 @@ get_query <- function(query, type = "apa")
       rvest::html_text()
 
     ## Post price (returns NA if an error is generated)
-    price <- try({raw_ads[i] %>%
+    price <- try({
+      raw_ads[i] %>%
       rvest::html_node("span.price") %>%
       rvest::html_text() %>%
       stringr::str_extract("[0-9]+") %>%
       as.numeric()
-      }, silent = TRUE)
+    }, silent = TRUE)
 
-    if(class(price == "try-error")){price <- NA}
+    if(class(price == "try-error")){ price <- NA }
 
     ## Post date
     date <- raw_ads[i] %>%
@@ -66,7 +61,7 @@ get_query <- function(query, type = "apa")
       rvest::html_text()
     }, silent = TRUE)
 
-    if(class(locale == "try-error")){locale <- NA}
+    if(class(locale == "try-error")){ locale <- NA }
 
     ## Post bedrooms and sqft (returns NA if an error is generated)
     size <- try({
@@ -75,7 +70,7 @@ get_query <- function(query, type = "apa")
       rvest::html_text()
     }, silent = TRUE)
 
-    if(class(size == "try-error")){size <- NA}
+    if(class(size == "try-error")){ size <- NA }
 
     if(!is.na(size)){
       # Obtain num bedrooms (returns NA if an error is generated)
@@ -85,7 +80,7 @@ get_query <- function(query, type = "apa")
         stringr::str_replace("br", "")
       }, silent = TRUE)
 
-      if(class(bed == "try-error")){bed <- NA}
+      if(class(bed == "try-error")){ bed <- NA }
 
       # Obtain square footage (returns NA if an error is generated)
       sqft <- try({
@@ -94,17 +89,27 @@ get_query <- function(query, type = "apa")
         stringr::str_replace("ft", "")
       }, silent = TRUE)
 
-      if(class(sqft == "try-error")){sqft <- NA}
+      if(class(sqft == "try-error")){ sqft <- NA }
     }
 
     ## Populate data vectors
-    titles  <- c(titles,  title)
-    prices  <- c(prices,  price)
-    dates   <- c(dates,   date)
-    urls    <- c(urls,    url)
-    locales <- c(locales, locale)
-    beds    <- c(beds,    bed)
-    sqfts   <- c(sqfts,   sqft)
+    if(i == 1){
+      titles  <- title
+      prices  <- price
+      dates   <- date
+      urls    <- url
+      locales <- locale
+      beds    <- bed
+      sqfts   <- sqft
+    } else {
+      titles  <- c(titles,  title)
+      prices  <- c(prices,  price)
+      dates   <- c(dates,   date)
+      urls    <- c(urls,    url)
+      locales <- c(locales, locale)
+      beds    <- c(beds,    bed)
+      sqfts   <- c(sqfts,   sqft)
+    }
   }
 
   ## Remove parens from locations
