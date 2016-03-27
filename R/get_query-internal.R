@@ -82,6 +82,10 @@ get_query <- function(query, type = "apa")
     locales <- c(locales, locale)
   }
 
+  ## Remove parens from locations
+  locales <- str_replace_all(locales, "[\\)\\()]", "")
+
+
   ## Bind the data
   clean_data <- data.frame(Title    = titles,
                            Date     = dates,
