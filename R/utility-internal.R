@@ -28,11 +28,11 @@ check_class <- function(param, expect_class){
 #' @keywords internal
 #' @export
 #'
-create_vector <- function(...){
-  for(i in 1:length(list(...))){
-    assign(list(...)[[i]],
+create_vector <- function(env = environment(), names){
+  for(i in 1:length(names)){
+    assign(names[i],
            vector(),
-           envir = environment())
+           envir = env)
   }
   return(invisible())
 }
