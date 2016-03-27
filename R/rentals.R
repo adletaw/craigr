@@ -3,10 +3,10 @@
 #' @description Get a list of housing available on craiglist using your own
 #' specifications
 #'
-#' @param location Character vector containing the region to look in. Default
-#' is "Seattle".
-#' @param area Character vector containing the specific area to look in. Default
-#' is "all".
+#' @param location Character vector containing the region to look in. Matches
+#' the craigslist subdomain for your region.  Default is "seattle".
+#' @param area Character vector containing the specific area to look in. Matches
+#' the craigslist three-letter code for yoru area.  Default is "all".
 #' @param base_url Optional character vector containing the craigslist base url.
 #' This overwrites the \code{location} and \code{area} parameters if supplied.
 #' @param detailed Logical indicating whether to return detailed search results,
@@ -63,7 +63,6 @@ rentals <- function(location = "seattle", area = "all", base_url = NULL,
   if(!RCurl::url.exists(base_url)){
     stop("URL not found.  Please check your input and try again.")
   }
-
 
   # Check the parameters that are not NULL by default
   check_class(has_pic,      "logical")

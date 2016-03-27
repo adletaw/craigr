@@ -12,11 +12,11 @@ rentals(location = "seattle", area = "all", base_url = NULL,
   pets_dog = FALSE)
 }
 \arguments{
-\item{location}{Character vector containing the region to look in. Default
-is "Seattle".}
+\item{location}{Character vector containing the region to look in. Matches
+the craigslist subdomain for your region.  Default is "seattle".}
 
-\item{area}{Character vector containing the specific area to look in. Default
-is "all".}
+\item{area}{Character vector containing the specific area to look in. Matches
+the craigslist three-letter code for yoru area.  Default is "all".}
 
 \item{base_url}{Optional character vector containing the craigslist base url.
 This overwrites the \code{location} and \code{area} parameters if supplied.}
