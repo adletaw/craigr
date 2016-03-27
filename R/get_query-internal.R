@@ -26,10 +26,11 @@ get_query <- function(query, type = "apa")
   raw_ads <- rvest::html_nodes(raw_query, "span.txt")
 
   ## Start empty vectors to hold ad data
-  titles <- c()
-  prices <- c()
-  dates  <- c()
-  urls   <- c()
+  titles  <- c()
+  prices  <- c()
+  dates   <- c()
+  urls    <- c()
+  locales <- c()
 
   ## Loop through to make sure no data is missing
   for(i in 1:length(raw_ads)){
@@ -62,18 +63,25 @@ get_query <- function(query, type = "apa")
       rvest::html_attr("href") %>%
       paste0(base_url, .)
 
+    ## Approx location
+    locale <- raw_ads[i] %>%
+      rvest::html_node("span.pnr") %>%
+      rvest::html_text()
+
     ## Populate data vectors
-    titles <- c(titles, title)
-    prices <- c(prices, price)
-    dates  <- c(dates,  date)
-    urls   <- c(urls,   url)
+    titles  <- c(titles, title)
+    prices  <- c(prices, price)
+    dates   <- c(dates,  date)
+    urls    <- c(urls,   url)
+    locales <- c(locales, locale)
   }
 
   ## Bind the data
-  clean_data <- data.frame(Title = titles,
-                           Price = prices,
-                           Date  = dates,
-                           URL   = urls)
+  clean_data <- data.frame(Title    = titles,
+                           Date     = dates,
+                           Price    = prices,
+                           Location = locales,
+                           URL      = urls)
 
   return(clean_data)
 }
