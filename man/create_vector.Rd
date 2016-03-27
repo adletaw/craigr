@@ -4,10 +4,12 @@
 \alias{create_vector}
 \title{Create empty vectors}
 \usage{
-create_vector(...)
+create_vector(env = environment(), names)
 }
 \arguments{
-\item{...}{Names for any number of vectors to create}
+\item{env}{The environment in which the vectors should be created}
+
+\item{names}{A chracter vector of names of vectors to create}
 }
 \description{
 Create any number of empty vectors and assign them to the parent

@@ -23,7 +23,8 @@ check_class <- function(param, expect_class){
 #' @description Create any number of empty vectors and assign them to the parent
 #' environment.
 #'
-#' @param ... Names for any number of vectors to create
+#' @param env The environment in which the vectors should be created
+#' @param names A chracter vector of names of vectors to create
 #'
 #' @keywords internal
 #' @export
