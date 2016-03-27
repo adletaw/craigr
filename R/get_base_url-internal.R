@@ -18,21 +18,11 @@
 #'
 get_base_url <- function(location, area, type = "apa")
 {
-  ## Find the line containing the specified location and area
-  line_num <- which(craigs_places$location == location &
-                      craigs_places$area   == area)
-
-  ## Find the URL prefix associated with the location
-  prefix <- craigs_places$prefix[line_num]
-
   ## Generate the base url
   if(area == "all"){
-    return(paste0("https://", prefix, ".craigslist.org/search/", type))
+    return(paste0("https://", location, ".craigslist.org/search/", type))
   } else {
-    ## Get the suffix
-    suffix <- craigs_places$suffix[line_num]
-
-    return(paste0("https://", prefix, ".craigslist.org/search/", suffix, "/",
+    return(paste0("https://", location, ".craigslist.org/search/", area, "/",
                   type))
   }
 }
