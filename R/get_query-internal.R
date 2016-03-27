@@ -64,9 +64,15 @@ get_query <- function(query, type = "apa")
       paste0(base_url, .)
 
     ## Approx location
-    locale <- raw_ads[i] %>%
-      rvest::html_node("span.pnr") %>%
+    locale <- try({raw_ads[i] %>%
+      rvest::html_node("span.pnr small") %>%
       rvest::html_text()
+    }, silent = TRUE)
+
+    # If there was an error, set locale to NA
+    if(class(locale)=="try-error"){
+      locale <- NA
+    }
 
     ## Populate data vectors
     titles  <- c(titles, title)
