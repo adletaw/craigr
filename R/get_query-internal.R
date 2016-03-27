@@ -71,6 +71,21 @@ get_query <- function(query, type = "apa")
     }
 
     ## Post bedrooms and sqft
+    size <- raw_ads[i] %>%
+      rvest::html_node("housing") %>%
+      rvest::html_text()
+
+    # Obtain num bedrooms
+    bed <- size %>%
+      stringr::str_extract("[0-9]*br") %>%
+      stringr::str_replace("br", "")
+
+    # Obtain square footage
+    sqft <- size %>%
+      stringr::str_extract("[0-9]*ft") %>%
+      stringr::str_replace("ft", "")
+
+
 
     ## Populate data vectors
     titles  <- c(titles,  title)
