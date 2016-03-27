@@ -30,9 +30,9 @@ check_class <- function(param, expect_class){
 #'
 create_vector <- function(...){
   for(i in 1:length(list(...))){
-    assign(...[[i]],
+    assign(list(...)[[i]],
            vector(),
-           envir = parent.env(environment()))
+           envir = environment())
   }
   return(invisible())
 }
