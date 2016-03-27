@@ -95,7 +95,7 @@ get_query <- function(query, type = "apa")
     urls    <- c(urls,    url)
     locales <- c(locales, locale)
     beds    <- c(beds,    bed)
-    sqft    <- c(sqfts,   sqft)
+    sqfts   <- c(sqfts,   sqft)
   }
 
   ## Remove parens from locations
