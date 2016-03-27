@@ -25,6 +25,12 @@ get_query <- function(query, type = "apa")
   ## Select out the apartment ads
   raw_ads <- rvest::html_nodes(raw_query, "span.txt")
 
+  ## Create data vectors
+  create_vector(env = environment(),
+                c("titles", "prices", "dates", "urls", "locales", "beds",
+                  "sqfts"))
+
+
   ## Loop through to make sure no data is missing
   for(i in 1:length(raw_ads)){
     ## Post title
@@ -59,7 +65,7 @@ get_query <- function(query, type = "apa")
 
     ## Post bedrooms and sqft (returns NA if an error is generated)
     size <- na_error({raw_ads[i] %>%
-      rvest::html_node("housing") %>%
+      rvest::html_node("span.housing") %>%
       rvest::html_text()
     })
 
@@ -76,23 +82,13 @@ get_query <- function(query, type = "apa")
     })
 
     ## Populate data vectors
-    if(i == 1){
-      titles  <- title
-      prices  <- price
-      dates   <- date
-      urls    <- url
-      locales <- locale
-      beds    <- bed
-      sqfts   <- sqft
-    } else {
-      titles  <- c(titles,  title)
-      prices  <- c(prices,  price)
-      dates   <- c(dates,   date)
-      urls    <- c(urls,    url)
-      locales <- c(locales, locale)
-      beds    <- c(beds,    bed)
-      sqfts   <- c(sqfts,   sqft)
-    }
+    titles  <- c(titles,  title)
+    prices  <- c(prices,  price)
+    dates   <- c(dates,   date)
+    urls    <- c(urls,    url)
+    locales <- c(locales, locale)
+    beds    <- c(beds,    bed)
+    sqfts   <- c(sqfts,   sqft)
   }
 
   ## Remove parens from locations
