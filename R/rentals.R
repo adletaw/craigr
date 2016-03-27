@@ -53,10 +53,6 @@ rentals <- function(location = "seattle", area = "all", base_url = NULL,
                     pets_cat = FALSE, pets_dog = FALSE)
 {
   ## Preliminary input checks -----
-  # Convert location and area to all lowercase
-  location <- tolower(location)
-  area <- tolower(area)
-
   # Valid location?
   if(!(location %in% craigs_places$location)){
     stop("Sorry, I don't understand that location.")
