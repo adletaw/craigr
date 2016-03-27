@@ -39,8 +39,7 @@
 #'
 #' @examples
 #'
-#' rentals(location = "seattle", area = "seattle", bedrooms = 5,
-#'         query = "downtown")
+#' rentals(location = "seattle", area = "see", bedrooms = 5, query = "downtown")
 #'
 #' @export
 #'
