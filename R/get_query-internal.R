@@ -26,11 +26,7 @@ get_query <- function(query, type = "apa")
   raw_ads <- rvest::html_nodes(raw_query, "span.txt")
 
   ## Start empty vectors to hold ad data
-  titles  <- c()
-  prices  <- c()
-  dates   <- c()
-  urls    <- c()
-  locales <- c()
+  create_vector("titles", "prices", "dates", "urls", "locales")
 
   ## Loop through to make sure no data is missing
   for(i in 1:length(raw_ads)){
