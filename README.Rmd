@@ -21,7 +21,7 @@ works with apartment searches.  See the "Package status" below.
 ## Package status
 
 This package is under active develpment.  Currently, you can download housing
-rental data only for Seattle or Houston only.
+rental data only.
 
 ## Usage
 
@@ -35,7 +35,7 @@ First you have to specify the location and area.  The location works as the
 Craigslist subdomain, e.g. [seattle.craigslist.org](https://seattle.craigslist.org). 
 The area allows you to filter to a more specific location according to the
 pre-programmed three-letter codes in Craigslist.  For example, using `see`
-limits the search to the Seattle city limits only.
+limits the search to the Seattle city limits only.  The default is `all`.
 
 ```{r location, message = FALSE, cache = TRUE}
 results <- craigr::rentals(location = "seattle", area = "see", 
@@ -44,6 +44,5 @@ results <- craigr::rentals(location = "seattle", area = "see",
 head(results)
 ```
 
-The listing title, price, data and url are provided.  A list of available
-locations is stored in the [dictionary here](https://github.com/adletaw/craigr/blob/master/dictionary/places.csv). You
-can add your own location data and run [generate_package_data.R](https://github.com/adletaw/craigr/blob/master/dictionary/generate_package_data.R) if needed.
+The listing title, price, data and url are provided.  Check [craigslist](https://craigslist.org)
+to find the location subdomain and three-letter area code.

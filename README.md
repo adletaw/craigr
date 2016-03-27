@@ -14,7 +14,7 @@ Install
 Package status
 --------------
 
-This package is under active develpment. Currently, you can download housing rental data only for Seattle or Houston only.
+This package is under active develpment. Currently, you can download housing rental data only.
 
 Usage
 -----
@@ -23,7 +23,7 @@ Usage
 
 *craigr* will do an apartment search using the function `rentals`. You can supply almost any search parameters that are available on craiglist. See the help page for `rentals` to get the full parameter list.
 
-First you have to specify the location and area. The location works as the Craigslist subdomain, e.g. [seattle.craigslist.org](https://seattle.craigslist.org). The area allows you to filter to a more specific location according to the pre-programmed three-letter codes in Craigslist. For example, using `see` limits the search to the Seattle city limits only.
+First you have to specify the location and area. The location works as the Craigslist subdomain, e.g. [seattle.craigslist.org](https://seattle.craigslist.org). The area allows you to filter to a more specific location according to the pre-programmed three-letter codes in Craigslist. For example, using `see` limits the search to the Seattle city limits only. The default is `all`.
 
 ``` r
 results <- craigr::rentals(location = "seattle", area = "see", 
@@ -59,4 +59,4 @@ head(results)
     ## 5 https://seattle.craigslist.org/see/apa/5510747340.html
     ## 6 https://seattle.craigslist.org/kit/apa/5510746449.html
 
-The listing title, price, data and url are provided. A list of available locations is stored in the [dictionary here](https://github.com/adletaw/craigr/blob/master/dictionary/places.csv). You can add your own location data and run [generate\_package\_data.R](https://github.com/adletaw/craigr/blob/master/dictionary/generate_package_data.R) if needed.
+The listing title, price, data and url are provided. Check [craigslist](https://craigslist.org) to find the location subdomain and three-letter area code.
