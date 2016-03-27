@@ -25,7 +25,7 @@ rental data only for Seattle or Houston only.
 
 ## Usage
 
-*craigr* will do an apartment search using the function `list_housing`.  You can
+*craigr* will do an apartment search using the function `rentals`.  You can
 supply almost any search parameters that are available on craiglist.  
 
 First you have to specify the location and area.  The location works as the 
@@ -36,10 +36,12 @@ pre-programmed options in Craigslist.  Using `all` will search the entire locati
 (in this case, the greater Seattle metro).
 
 ```{r location, message = FALSE}
-results <- craigr::list_housing(location = "seattle", area = "all", 
-                                max_results = 100)
+results <- craigr::rentals(location = "seattle", area = "all", 
+                           max_results = 100)
 
 head(results)
 ```
 
-The listing title, price, data and url are provided.
+The listing title, price, data and url are provided.  A list of available
+locations is stored in the [dictionary here](https://github.com/adletaw/craigr/blob/master/dictionary/places.csv). You
+can add your own location data and run [generate_package_data.R](https://github.com/adletaw/craigr/blob/master/dictionary/generate_package_data.R) if needed.
