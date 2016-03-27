@@ -53,28 +53,24 @@ rentals <- function(location = "seattle", area = "all", base_url = NULL,
                     pets_cat = FALSE, pets_dog = FALSE)
 {
   ## Preliminary input checks -----
-  # Valid location?
-  if(!(location %in% craigs_places$location)){
-    stop("Sorry, I don't understand that location.")
+  # Generate the base url based on specified location and area and make sure
+  # it exists
+  if(missing("base_url"))
+  {
+    base_url <- get_base_url(location, area)
   }
-  # Valid location + area?
-  if(!any(craigs_places$location == location & craigs_places$area == area)){
-    warning("That area is invalid.  Defaulting to 'all'.")
-    area <- "all"
+
+  if(!RCurl::url.exists(base_url)){
+    stop("URL not found.  Please check your input and try again.")
   }
+
+
   # Check the parameters that are not NULL by default
   check_class(has_pic,      "logical")
   check_class(posted_today, "logical")
   check_class(pets_cat,     "logical")
   check_class(pets_dog,     "logical")
   check_class(max_results,  "numeric")
-
-  ## Generate the base url based on specified location and area -----
-  ## If "base_url" is specified, this section will be skipped   -----
-  if(missing("base_url"))
-  {
-    base_url <- get_base_url(location, area)
-  }
 
   ## Generate the query based on supplied parameters
   # Vector to whold query components
