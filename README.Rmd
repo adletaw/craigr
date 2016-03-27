@@ -34,7 +34,7 @@ help page for `rentals` to get the full parameter list.
 First you have to specify the location and area.  The location works as the 
 Craigslist subdomain, e.g. [seattle.craigslist.org](https://seattle.craigslist.org). 
 The area allows you to filter to a more specific location according to the
-pre-programmed three-letter coes in Craigslist.  For example, using `see`
+pre-programmed three-letter codes in Craigslist.  For example, using `see`
 limits the search to the Seattle city limits only.
 
 ```{r location, message = FALSE, cache = TRUE}
