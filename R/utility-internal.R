@@ -3,6 +3,10 @@
 #' @description Check the class of a supplied parameter to make sure it matches
 #' expectations.
 #'
+#' @param param The parameter to check the class of
+#' @param expect_class Character string containing the name of the class
+#' expected for \code{param}.
+#'
 #' @keywords internal
 #' @export
 #'
