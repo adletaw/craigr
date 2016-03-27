@@ -36,3 +36,26 @@ create_vector <- function(...){
   }
   return(invisible())
 }
+
+#' Errors to NA
+#'
+#' @description If a code chunk leads to an error, return NA
+#'
+#' @param ...Code to try
+#'
+#' @keywords internal
+#' @export
+#'
+na_errors <- function(expr){
+  # Try the code
+  try_it <- try({expr}, silent = TRUE)
+
+  # Check for an error
+  if(class(try_it=="try-error")){
+    # Return NA if an error is found
+    return(NA)
+  } else{
+    # Return code output if error not found
+    return(try_it)
+  }
+}
