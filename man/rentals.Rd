@@ -5,11 +5,11 @@
 \title{List Available Rentals}
 \usage{
 rentals(location = "seattle", area = "all", base_url = NULL,
-  detailed = FALSE, max_results = 2500, query = NULL, postal = NULL,
-  search_distance = NULL, bedrooms = NULL, bathrooms = NULL,
-  min_price = NULL, max_price = NULL, min_sqft = NULL, max_sqft = NULL,
-  has_pic = FALSE, posted_today = FALSE, pets_cat = FALSE,
-  pets_dog = FALSE)
+  detailed = FALSE, output = NULL, max_results = 2500, query = NULL,
+  postal = NULL, search_distance = NULL, bedrooms = NULL,
+  bathrooms = NULL, min_price = NULL, max_price = NULL, min_sqft = NULL,
+  max_sqft = NULL, has_pic = FALSE, posted_today = FALSE,
+  pets_cat = FALSE, pets_dog = FALSE)
 }
 \arguments{
 \item{location}{Character vector containing the region to look in. Matches
@@ -24,6 +24,9 @@ This overwrites the \code{location} and \code{area} parameters if supplied.}
 \item{detailed}{Logical indicating whether to return detailed search results,
 attempting to scrape extra information from listing pages.  Detailed results
 take longer to acquire. Default is \code{FALSE}.}
+
+\item{output}{Optional character vector naming a CSV file to save to.
+Default is no output.}
 
 \item{max_results}{Numeric specifying the maximum number of results to
 display.  Results are obtained 100 at a time, so the value will be rounded
