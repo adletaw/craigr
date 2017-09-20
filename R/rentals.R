@@ -12,6 +12,8 @@
 #' @param detailed Logical indicating whether to return detailed search results,
 #' attempting to scrape extra information from listing pages.  Detailed results
 #' take longer to acquire. Default is \code{FALSE}.
+#' @param output Optional character vector naming a CSV file to save to.
+#' Default is no output.
 #' @param max_results Numeric specifying the maximum number of results to
 #' display.  Results are obtained 100 at a time, so the value will be rounded
 #' to the nearest 100.  Defaults at the craigslist maximum of 2500.
@@ -44,7 +46,7 @@
 #' @export
 #'
 rentals <- function(location = "seattle", area = "all", base_url = NULL,
-                    detailed = FALSE,
+                    detailed = FALSE, output = NULL,
                     max_results = 2500, query = NULL, postal = NULL,
                     search_distance = NULL, bedrooms = NULL, bathrooms = NULL,
                     min_price = NULL, max_price = NULL, min_sqft = NULL,
@@ -168,6 +170,11 @@ rentals <- function(location = "seattle", area = "all", base_url = NULL,
       ## Bind the results from each page
       all_results <- rbind(all_results, query_results)
     }
+  }
+
+  # Generate output file if desired
+  if(!missing(output)){
+    write.csv(x = all_results, file = output)
   }
 
   return(all_results)
