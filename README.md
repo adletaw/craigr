@@ -11,10 +11,12 @@ Install
 
 `devtools::install_github("adletaw/craigr")`
 
+Note that the package depends on: `rvest`, `stringr`, `xml2`, `RCurl` and `magrittr`
+
 Package status
 --------------
 
-This package is under active develpment. Currently, you can download housing rental data only.
+This package is under passive development. Currently, you can download housing rental data only.
 
 Usage
 -----
@@ -32,19 +34,33 @@ results <- craigr::rentals(location = "seattle", area = "see",
 head(results)
 ```
 
-    ##                                                                Title Price
-    ## 1                                    One Bed in Brand New Building!!  1895
-    ## 2                        *5902* Micro Studios in Ballard NOW LEASING   950
-    ## 3                 // BALLARD MICRO STUDIOS // All utilities included   950
-    ## 4      NEW Contemporary Homes in West Seattle, Vibrant Neighborhood!  1950
-    ## 5 One Bed - New Building - One Block From New Sound Transit Station!  1895
-    ## 6                   Ballard *2418* Micro Studios available APRIL 1st   950
-    ##               Date                                                    URL
-    ## 1 2016-03-27 12:24 https://seattle.craigslist.org/see/apa/5510759291.html
-    ## 2 2016-03-27 12:23 https://seattle.craigslist.org/see/apa/5486712510.html
-    ## 3 2016-03-27 12:23 https://seattle.craigslist.org/see/apa/5480062055.html
-    ## 4 2016-03-27 12:23 https://seattle.craigslist.org/see/apa/5510751064.html
-    ## 5 2016-03-27 12:23 https://seattle.craigslist.org/see/apa/5510752083.html
-    ## 6 2016-03-27 12:23 https://seattle.craigslist.org/see/apa/5489862949.html
+    ##                                                                   Title
+    ## 1              Get Cozy at Cora || Open House Saturday || FREE 6 WEEKS!
+    ## 2     Rare Top Floor Opening at Belroy with City Views from Every Room!
+    ## 3                                     Love the comfort of your new home
+    ## 4           Spacious Exterior Entry Condo Steps from West Sea Junction!
+    ## 5 Top Floor Condo Apartment - 3 blocks from UW - Spacious & Beautiful -
+    ## 6                                                        Handsome Henry
+    ##               Date Price Bedrooms SqFt
+    ## 1 2017-09-20 11:23  2525        1  630
+    ## 2 2017-09-20 11:23  3095        1  808
+    ## 3 2017-09-20 11:22  1825        3 1090
+    ## 4 2017-09-20 11:22  1950        1  884
+    ## 5 2017-09-20 11:21  2450        2 1000
+    ## 6 2017-09-20 11:20  2295        1  610
+    ##                                           Location
+    ## 1                        Schedule your Tour Today!
+    ## 2                               North Capitol Hill
+    ## 3  31224 Pete von Reichbauer Way S Federal Way, WA
+    ## 4                                     West Seattle
+    ## 5              Seattle  / University District / UW
+    ## 6                               Fremont/Queen Anne
+    ##                                                                                      URL
+    ## 1   https://seattle.craigslist.org/see/apa/d/get-cozy-at-cora-open-house/6313956317.html
+    ## 2     https://seattle.craigslist.org/see/apa/d/rare-top-floor-opening-at/6313955932.html
+    ## 3  https://seattle.craigslist.org/see/apa/d/love-the-comfort-of-your-new/6313954876.html
+    ## 4 https://seattle.craigslist.org/see/apa/d/spacious-exterior-entry-condo/6313954753.html
+    ## 5   https://seattle.craigslist.org/see/apa/d/top-floor-condo-apartment-3/6309805820.html
+    ## 6                https://seattle.craigslist.org/see/apa/d/handsome-henry/6313952181.html
 
 The listing title, price, data and url are provided. Check [craigslist](https://craigslist.org) to find the location subdomain and three-letter area code.
