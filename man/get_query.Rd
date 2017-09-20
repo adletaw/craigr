@@ -19,4 +19,3 @@ only apartment searches are available.  Default is \code{apa} for "apartment".}
 Query Craigslist and clean the scrape data
 }
 \keyword{internal}
-

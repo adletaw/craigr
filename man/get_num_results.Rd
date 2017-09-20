@@ -16,4 +16,3 @@ get_num_results(query)
 Find out how many results are available for the search
 }
 \keyword{internal}
-

@@ -25,4 +25,3 @@ Create the base url based on supplied location data and
 desired search type.
 }
 \keyword{internal}
-

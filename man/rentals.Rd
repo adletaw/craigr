@@ -72,4 +72,3 @@ specifications
 rentals(location = "seattle", area = "see", bedrooms = 5, query = "downtown")
 
 }
-

@@ -16,4 +16,3 @@ Create any number of empty vectors and assign them to the parent
 environment.
 }
 \keyword{internal}
-

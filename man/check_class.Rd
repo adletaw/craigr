@@ -17,4 +17,3 @@ Check the class of a supplied parameter to make sure it matches
 expectations.
 }
 \keyword{internal}
-

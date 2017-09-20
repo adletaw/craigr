@@ -18,9 +18,11 @@ works with apartment searches.  See the "Package status" below.
 
 `devtools::install_github("adletaw/craigr")`
 
+Note that the package depends on: `rvest`, `stringr`, `xml2`, `RCurl` and `magrittr`
+
 ## Package status
 
-This package is under active develpment.  Currently, you can download housing
+This package is under passive development.  Currently, you can download housing
 rental data only.
 
 ## Usage

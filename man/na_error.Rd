@@ -14,4 +14,3 @@ Given an expression, try to evaluate and return NA if there is
 an error.
 }
 \keyword{internal}
-
