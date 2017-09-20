@@ -17,13 +17,8 @@ get_query <- function(query, type = "apa")
   ## The raw query
   raw_query <- xml2::read_html(query)
 
-  ## The base url (for appending to listing URLs)
-  base_url <- rvest::html_nodes(raw_query, ".header-logo") %>%
-    extract(1) %>%
-    rvest::html_attr("href")
-
-  ## Select out the apartment ads
-  raw_ads <- rvest::html_nodes(raw_query, "span.txt")
+  ## Select out the listing ads
+  raw_ads <- rvest::html_nodes(raw_query, "p.result-info")
 
   ## Create data vectors
   create_vector(env = environment(),
@@ -33,50 +28,57 @@ get_query <- function(query, type = "apa")
 
   ## Loop through to make sure no data is missing
   for(i in 1:length(raw_ads)){
+    ## Get the current post
+    post <- raw_ads[i]
+
     ## Post title
-    title <- raw_ads[i] %>%
-      rvest::html_node("span#titletextonly") %>%
+    title <- post %>%
+      rvest::html_node("a.result-title") %>%
       rvest::html_text()
 
     ## Post price (returns NA if an error is generated)
-    price <- na_error({raw_ads[i] %>%
-      rvest::html_node("span.price") %>%
+    price <- na_error({
+      post %>%
+      rvest::html_node("span.result-price") %>%
       rvest::html_text() %>%
       stringr::str_extract("[0-9]+") %>%
       as.numeric()
     })
 
     ## Post date
-    date <- raw_ads[i] %>%
+    date <- post %>%
       rvest::html_node("time") %>%
       rvest::html_attr("datetime")
 
     ## Post url
-    url <- raw_ads[i] %>%
-      rvest::html_node("a") %>%
-      rvest::html_attr("href") %>%
-      paste0(base_url, .)
+    url <- post %>%
+      rvest::html_node(".result-title") %>%
+      rvest::html_attr("href")
 
     ## Approx location (returns NA if an error is generated)
-    locale <- na_error({raw_ads[i] %>%
-      rvest::html_node("span.pnr small") %>%
+    locale <- na_error({
+      post %>%
+      rvest::html_node(".result-hood") %>%
       rvest::html_text()
     })
 
     ## Post bedrooms and sqft (returns NA if an error is generated)
-    size <- na_error({raw_ads[i] %>%
-      rvest::html_node("span.housing") %>%
+    size <- na_error({
+      post %>%
+      rvest::html_node(".housing") %>%
       rvest::html_text()
     })
 
     # Obtain num bedrooms (returns NA if an error is generated)
-    bed <- na_error({size %>%
+    bed <- na_error({
+      size %>%
       stringr::str_extract("[0-9]*br") %>%
       stringr::str_replace("br", "")
     })
 
     # Obtain square footage (returns NA if an error is generated)
-    sqft <- na_error({size %>%
+    sqft <- na_error({
+      size %>%
       stringr::str_extract("[0-9]*ft") %>%
       stringr::str_replace("ft", "")
     })
