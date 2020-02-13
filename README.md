@@ -1,5 +1,6 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/adletaw/craigr.svg?branch=master)](https://travis-ci.org/adletaw/craigr)
+
+**craigR is no longer under development. Feel free to fork, copy, use as desired. No attribution necessary.**
 
 craigr: an R package to get data from craigslist
 ================================================
